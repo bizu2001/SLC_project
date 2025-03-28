@@ -27,6 +27,13 @@ When reading OGG files, the `sample_width` is reduced to 2 (instead of 4 in the 
 - **Disk Quota Issue**: 
   - WAV files are significantly larger than OGG files, causing a disk quota exceedance. The same audio pairs are renamed to ensure consistency between the file names.
 
+#### Audio File Preparation: MP3 to WAV Conversion and Dataset Splitting
+- **Target Split**: 
+  - Training: 207,364 pairs
+  - Testing: 14,759 pairs
+  - Development: 14,759 pairs
+
+
 ###  prepare target discrete units
 Quantize using a pretrained  K-means clustering model. <br>
 decode units from speech（use 100 units from the sixth layer (--layer 6) of the HuBERT Base model):HUBERT-BASE+KM100
@@ -36,7 +43,7 @@ decode units from speech（use 100 units from the sixth layer (--layer 6) of the
 #### S2UT data
 (completed, to run the code I have to modify fairseq)
 #### Multitask data
-Actually this step is optional.Better performance
+Actually this step is optional.Better performance.This step is not required this time.
 ### Training without mulititask
 100 discrete units as target:
 #### Model Architecture:
@@ -56,6 +63,7 @@ Actually this step is optional.Better performance
 - `--adam-betas "(0.9, 0.98)"`: momentum and variance for the moving averages of gradient updates.
 - `--clip-norm 10.0`:to prevent exploding gradients.
 
+haven't begun yet: 
 - **Number of GPUs**: 4 x RTX 2080
 - **Total Epochs**: 63
   #### Validation Results on the Dev Set while training
